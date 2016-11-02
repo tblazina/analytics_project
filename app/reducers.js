@@ -5,8 +5,8 @@
 
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
+
 
 /**
  * Creates the main reducer with the asynchronously loaded ones

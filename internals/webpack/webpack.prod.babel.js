@@ -60,6 +60,7 @@ module.exports = require('./webpack.base.babel')({
         minifyJS: true,
         minifyCSS: true,
         minifyURLs: true,
+        favicon: 'app/favicon.png',
       },
       inject: true,
     }),

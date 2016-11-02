@@ -34,6 +34,46 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      path: 'maindash',
+      name: 'maindash',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/ChartContainer/reducer'),
+          System.import('containers/ChartContainer/sagas'),
+          System.import('components/MainDash'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('chartContainer', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    },  {
+      path: 'chartContainer',
+      name: 'chartContainer',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/ChartContainer/reducer'),
+          System.import('containers/ChartContainer/sagas'),
+          System.import('containers/ChartContainer'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('chartContainer', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
