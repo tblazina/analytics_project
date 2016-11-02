@@ -20,7 +20,7 @@ class MainDash extends React.Component { // eslint-disable-line react/prefer-sta
          <Grid className={styles.bsGrid} fluid={true}>
    <Row className="show-grid">
       <Col md={6} mdPush={6}> <ChartContainer url={'http://localhost:8000/d3/location-category-sales'} /> </Col>
-      <Col md={6} mdPull={6}> fuck </Col>
+      <Col md={6} mdPull={6}> <ChartContainer url={'http://localhost:8000/d3/weekly-sales'} /> </Col>
     </Row>
 
     </Grid>

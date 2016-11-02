@@ -5,7 +5,7 @@
  */
 
 import {
-LOAD_DATA_SUCCESS, GET_API_URL, GET_DATA, DATA_LOADED
+DATA_LOADED,
 } from './constants';
 
 
