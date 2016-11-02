@@ -16,9 +16,11 @@ export const fetchData = (url) => {
 };
 
 export function* loadData(action) {
+  console.log(action)
   try{
   const data = yield fetchData(action.url);
-  yield put({type: DATA_LOADED, data})}    // This is the action creator which is passed to the reducer.js to pull the data, put dispatches it to the store
+  yield put({type: DATA_LOADED, data})    // This is the action creator which is passed to the reducer.js to pull the data, put dispatches it to the store
+  yield put({type: LOAD_DATA_SUCCESS})}
   catch (error){
 		yield put({type: LOAD_DATA_ERROR })
 	}
