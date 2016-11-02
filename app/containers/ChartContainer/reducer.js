@@ -5,7 +5,7 @@
  */
 
 import {
-LOAD_DATA_SUCCESS, GET_API_URL, GET_DATA,
+LOAD_DATA_SUCCESS, GET_API_URL, GET_DATA, DATA_LOADED
 } from './constants';
 
 
@@ -21,7 +21,7 @@ function chartContainerReducer(state = initialState, action) {
 
   switch (action.type) {
 
-    case LOAD_DATA_SUCCESS:
+    case DATA_LOADED:
       return update(state, {data: action.data.data});
 
     default:
