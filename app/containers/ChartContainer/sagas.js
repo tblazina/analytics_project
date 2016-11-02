@@ -2,29 +2,29 @@ import { take, call, put, select, fork, takeEvery, takeLatest, cancelled} from '
 import * as axios from 'axios';
 import {DATA_LOADED,
         LOAD_DATA_ERROR,
-        MAKE_API_REQUEST,
         DATA_FETCH_FAILED,
         GET_DATA,
         LOAD_URL} from './constants';
-
-import {dispatchMyAction} from './actions'
 // Individual exports for testing
-
 
 const API_ENDPOINT= 'http://localhost:8000/d3/location-category-sales'
 
-export const fetchData = (url) => {
-  return fetch(url).then(function (response) {
-    return response.json().then( json => {
-    	return json
-    })
-  })
+// export const fetchData = () => {
+//   return axios.get(API_ENDPOINT).then(function (response) {
+//     return response.json().then( json => {
+//     	return json
+//     })
+//   })
+// };
+
+export const fetchData = () => {
+  return axios.get(API_ENDPOINT);
 };
+
 
 export function* loadData() {
   try{
-  const url = take(dispatchMyAction)
-  const data = yield fetchData(url);
+  const data = yield fetchData();
   yield put({type: DATA_LOADED, data})}    // 
   catch (error){
 		yield put({type: LOAD_DATA_ERROR })

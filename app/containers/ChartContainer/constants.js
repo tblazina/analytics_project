@@ -4,6 +4,7 @@
  *
  */
 
+export const LOAD_DATA = 'app/ChartContainer/LOAD_DATA';
 export const DATA_LOADED = 'app/ChartContainer/DATA_LOADED';
 export const LOAD_DATA_ERROR = 'app/ChartContainer/LOAD_DATA_ERROR';
 export const DATA_FETCH_SUCCEEDED = 'app/ChartContainer/DATA_FETCH_SUCCEEDED';

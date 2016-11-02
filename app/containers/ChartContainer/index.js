@@ -44,6 +44,10 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(actionCreators, dispatch);
 }
 
-
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     dispatchMyAction: (url) => dispatch(loadURL(url)),
+//   };
+// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChartContainer);

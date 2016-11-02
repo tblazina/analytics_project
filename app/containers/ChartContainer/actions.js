@@ -32,8 +32,8 @@ export function loadData(){
 //   }
 // }
 
-export function dispatchMyAction(url){
-   type: DISPATCH_ACTION,
+export function getApiUrl(url){
+   type: GET_API_URL,
    url
 }
 
