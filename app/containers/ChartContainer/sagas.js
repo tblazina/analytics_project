@@ -4,7 +4,8 @@ import * as axios from 'axios';
 import {LOAD_DATA,
         DATA_LOADED,
         LOAD_DATA_ERROR,
-        LOAD_URL
+        LOAD_URL,
+        GET_API_URL
     } from './constants';
 // Individual exports for testing
 
@@ -16,9 +17,8 @@ export const fetchData = (url) => {
 };
 
 export function* loadData(action) {
-  console.log(action)
   try{
-  const data = yield fetchData(action.url);
+  const data = yield fetchData(action.payload.url);
   yield put({type: DATA_LOADED, data})    // This is the action creator which is passed to the reducer.js to pull the data, put dispatches it to the store
   yield put({type: LOAD_DATA_SUCCESS})}
   catch (error){
@@ -27,7 +27,7 @@ export function* loadData(action) {
 }
 
 function* watchForLoadData() {
-  yield* takeLatest(LOAD_DATA, loadData);
+  yield* takeLatest(GET_API_URL, loadData);
 }
 
 export function* testSaga(action){
