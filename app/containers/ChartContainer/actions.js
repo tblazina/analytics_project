@@ -5,6 +5,7 @@
  */
 
 import {
+  GET_API_URL,
   LOAD_DATA,
   LOAD_DATA_ERROR,
   MAKE_API_REQUEST,
@@ -33,8 +34,12 @@ export function loadData(){
 // }
 
 export function getApiUrl(url){
-   type: GET_API_URL,
-   url
+   return {
+      type: GET_API_URL,
+      payload: {
+          url
+      }
+  }
 }
 
 // export function makeApiRequest(url){

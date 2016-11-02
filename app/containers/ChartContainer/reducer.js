@@ -5,7 +5,7 @@
  */
 
 import {
-DATA_LOADED, MAKE_API_REQUEST, GET_DATA,
+DATA_LOADED, GET_API_URL, GET_DATA,
 } from './constants';
 
 
@@ -18,6 +18,7 @@ const initialState = {
 };
 
 function chartContainerReducer(state = initialState, action) {
+  console.log(action)
   switch (action.type) {
 
     case DATA_LOADED:

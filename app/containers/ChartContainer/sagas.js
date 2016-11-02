@@ -1,44 +1,35 @@
-import { take, call, put, select, fork, takeEvery, takeLatest, cancelled} from 'redux-saga/effects';
+import { take, call, put, select, fork, takeEvery, cancelled} from 'redux-saga/effects';
+import {takeLatest} from 'redux-saga';
 import * as axios from 'axios';
-import {DATA_LOADED,
+import {LOAD_DATA,
+        DATA_LOADED,
         LOAD_DATA_ERROR,
-        DATA_FETCH_FAILED,
-        GET_DATA,
-        LOAD_URL} from './constants';
+        LOAD_URL
+    } from './constants';
 // Individual exports for testing
 
 const API_ENDPOINT= 'http://localhost:8000/d3/location-category-sales'
 
-// export const fetchData = () => {
-//   return axios.get(API_ENDPOINT).then(function (response) {
-//     return response.json().then( json => {
-//     	return json
-//     })
-//   })
-// };
 
-export const fetchData = () => {
-  return axios.get(API_ENDPOINT);
+export const fetchData = (url) => {
+  return axios.get(url);
 };
 
-
-export function* loadData() {
+export function* loadData(action) {
   try{
-  const data = yield fetchData();
-  yield put({type: DATA_LOADED, data})}    // 
+  const data = yield fetchData(action.url);
+  yield put({type: DATA_LOADED, data})}    // This is the action creator which is passed to the reducer.js to pull the data, put dispatches it to the store
   catch (error){
 		yield put({type: LOAD_DATA_ERROR })
 	}
 }
 
-
-export function* watchForLoadData(){
-	while(true){
-		yield take('LOAD_DATA');  
-		yield fork(loadData)
-	}
+function* watchForLoadData() {
+  yield* takeLatest(LOAD_DATA, loadData);
 }
 
+export function* testSaga(action){
+}
 
 // function* watcherGetChartData() {
 //   try {
@@ -64,7 +55,7 @@ export function* watchForLoadData(){
 export default [
   loadData,
   watchForLoadData,
+  testSaga,
   // watcherGetChartData,
-  // stateLog
 
 ];

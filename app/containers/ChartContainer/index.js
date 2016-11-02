@@ -17,8 +17,8 @@ import ChartArea from '../../components/ChartArea'
 
 export class ChartContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   
-  ComponentWillMount(){
-    this.props.dispatchMyAction(this.props.url)
+  componentDidMount(){
+    this.props.getApiUrl(this.props.url)
   }
 
   render() { 
