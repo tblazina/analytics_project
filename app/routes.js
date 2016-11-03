@@ -4,6 +4,8 @@
 // about the code splitting business
 import { getAsyncInjectors } from 'utils/asyncInjectors';
 
+
+
 const errorLoading = (err) => {
   console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
 };
@@ -11,6 +13,16 @@ const errorLoading = (err) => {
 const loadModule = (cb) => (componentModule) => {
   cb(null, componentModule.default);
 };
+
+// function* main(){
+//     const watchGetData = yield fork(takeEvery, GET_API_URL, loadData);
+//     console.log('worked')
+//     yield take("@@router/LOCATION_CHANGE")
+//     console.log('also worked')
+//     yield cancel(watchGetData)
+// }
+
+
 
 export default function createRoutes(store) {
   // Create reusable async injectors using getAsyncInjectors factory

@@ -33,7 +33,7 @@ export class ChartContainer extends React.Component { // eslint-disable-line rea
 
 ChartContainer.propTypes = {
   data: React.PropTypes.array,
-  url: React.PropTypes.string
+  url: React.PropTypes.array
 };
 
 

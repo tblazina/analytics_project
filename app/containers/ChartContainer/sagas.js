@@ -1,15 +1,16 @@
-import { take, call, put, select, fork, takeEvery, cancelled} from 'redux-saga/effects';
-import {takeLatest} from 'redux-saga';
+import { take, call, race, put, select, fork, cancel, cancelled} from 'redux-saga/effects';
+import {takeEvery, takeLatest} from 'redux-saga';
+import { LOCATION_CHANGE } from 'react-router-redux';
 import * as axios from 'axios';
-import {LOAD_DATA,
-        DATA_LOADED,
+import {DATA_FETCH_SUCCESS_1,
+        DATA_FETCH_SUCCESS_2,
+        DATA_FETCH_SUCCESS_3,
+        DATA_FETCH_SUCCESS_4,
+        DATA_FETCH_SUCCESS_5,
         LOAD_DATA_ERROR,
-        LOAD_URL,
         GET_API_URL
     } from './constants';
 // Individual exports for testing
-
-const API_ENDPOINT= 'http://localhost:8000/d3/location-category-sales'
 
 
 export const fetchData = (url) => {
@@ -17,21 +18,58 @@ export const fetchData = (url) => {
 };
 
 export function* loadData(action) {
-  try{
-  const data = yield fetchData(action.payload.url);
-  yield put({type: DATA_LOADED, data})    // This is the action creator which is passed to the reducer.js to pull the data, put dispatches it to the store
-  yield put({type: LOAD_DATA_SUCCESS})}
-  catch (error){
+
+    try{
+        for(let j = 0; j < action.payload.url.length; j++){
+
+        if (j ===0){
+            let dashboardData1 = yield fetchData(action.payload.url[j]);
+            yield put({type: DATA_FETCH_SUCCESS_1, dashboardData1});
+            }
+
+        if (j ===1){
+            let dashboardData2 = yield fetchData(action.payload.url[j]);
+            yield put({type: DATA_FETCH_SUCCESS_2, dashboardData2});
+            }
+
+        if (j ===2){
+            let dashboardData3 = yield fetchData(action.payload.url[j]);
+            yield put({type: DATA_FETCH_SUCCESS_2, dashboardData3});
+            }
+
+        if (j ===3){
+            let dashboardData4 = yield fetchData(action.payload.url[j]);
+            yield put({type: DATA_FETCH_SUCCESS_2, dashboardData4});
+            }
+
+        if (j ===4){
+            let dashboardData5 = yield fetchData(action.payload.url[j]);
+            yield put({type: DATA_FETCH_SUCCESS_2, dashboardData5});
+            }
+
+        
+        };
+    }
+    catch (error){
 		yield put({type: LOAD_DATA_ERROR })
 	}
 }
 
-function* watchForLoadData() {
-  yield* takeLatest(GET_API_URL, loadData);
+function* watchForLoadData() {   
+    yield fork(takeEvery, GET_API_URL, loadData);
 }
 
-export function* testSaga(action){
+function* main() {
+    // Fork watcher so we can continue execution
+
+    const watcher = yield fork(watchForLoadData);
+
+    // Suspend execution until location changes
+    yield take(LOCATION_CHANGE);
+    yield cancel(watcher);
+    console.log('worked')
 }
+
 
 // function* watcherGetChartData() {
 //   try {
@@ -55,9 +93,11 @@ export function* testSaga(action){
 
 // All sagas to be loaded
 export default [
-  loadData,
-  watchForLoadData,
-  testSaga,
+  // loadData,
+  main,
   // watcherGetChartData,
 
 ];
+
+
+

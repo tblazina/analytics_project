@@ -28,12 +28,10 @@ class ChartArea extends React.Component { // eslint-disable-line react/prefer-st
 				   }
   	// Translation for grouping element
   	let translate = `translate(${params.margins.left}, ${params.margins.top})`
-
     return (
       <div className={styles.chartArea}>
       	<svg height={params.chartHeight} width={params.chartWidth}>
       		<g className="barplot" transform={translate}>
-
       		</g>
       	</svg>
       </div>

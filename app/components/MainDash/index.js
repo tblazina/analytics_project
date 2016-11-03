@@ -18,8 +18,8 @@ class MainDash extends React.Component { // eslint-disable-line react/prefer-sta
       <div className={styles.mainDash}>
          <Grid className={styles.bsGrid} fluid={true}>
    <Row className="show-grid">
-      <Col md={6} mdPush={6}> <ChartContainer url={'http://localhost:8000/d3/location-category-sales'} data={this.props.apidata1}/> </Col>
-      <Col md={6} mdPull={6}> <ChartContainer url={'http://localhost:8000/d3/weekly-sales'} data={this.props.apidata2 }/> </Col>
+      <Col md={6} mdPush={6}> <ChartContainer url={['http://localhost:8000/d3/location-category-sales','http://localhost:8000/d3/weekly-sales']}/> </Col>
+      {/*<Col md={6} mdPull={6}> <ChartContainer url={'http://localhost:8000/d3/weekly-sales'} data={this.props.apidata2 }/> </Col> */}
     </Row>
 
     </Grid>
@@ -29,7 +29,6 @@ class MainDash extends React.Component { // eslint-disable-line react/prefer-sta
 }
 const selectData1 = () => (state) => state.chartContainer;
 const selectData2 = () => (state) => state.chartContainer;
-console.log(selectData1())
 
 const mapStateToProps = createStructuredSelector({
   apidata1: selectData1(),
