@@ -14,16 +14,6 @@ const loadModule = (cb) => (componentModule) => {
   cb(null, componentModule.default);
 };
 
-// function* main(){
-//     const watchGetData = yield fork(takeEvery, GET_API_URL, loadData);
-//     console.log('worked')
-//     yield take("@@router/LOCATION_CHANGE")
-//     console.log('also worked')
-//     yield cancel(watchGetData)
-// }
-
-
-
 export default function createRoutes(store) {
   // Create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store); // eslint-disable-line no-unused-vars
@@ -50,35 +40,15 @@ export default function createRoutes(store) {
       name: 'maindash',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          System.import('containers/ChartContainer/reducer'),
-          System.import('containers/ChartContainer/sagas'),
+          System.import('containers/MainDashContainer/reducer'),
+          System.import('containers/MainDashContainer/sagas'),
           System.import('components/MainDash'),
         ]);
 
         const renderRoute = loadModule(cb);
 
         importModules.then(([reducer, sagas, component]) => {
-          injectReducer('chartContainer', reducer.default);
-          injectSagas(sagas.default);
-          renderRoute(component);
-        });
-
-        importModules.catch(errorLoading);
-      },
-    },  {
-      path: 'chartContainer',
-      name: 'chartContainer',
-      getComponent(nextState, cb) {
-        const importModules = Promise.all([
-          System.import('containers/ChartContainer/reducer'),
-          System.import('containers/ChartContainer/sagas'),
-          System.import('containers/ChartContainer'),
-        ]);
-
-        const renderRoute = loadModule(cb);
-
-        importModules.then(([reducer, sagas, component]) => {
-          injectReducer('chartContainer', reducer.default);
+          injectReducer('mainDashContainer', reducer.default);
           injectSagas(sagas.default);
           renderRoute(component);
         });

@@ -7,8 +7,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styles from './styles.css';
-import ChartContainer from '../../containers/ChartContainer'
-import {Grid, Row, Col} from 'react-bootstrap';
+import MainDashContainer from '../../containers/MainDashContainer'
+
 import {createStructuredSelector} from 'reselect';
 
 
@@ -16,19 +16,15 @@ class MainDash extends React.Component { // eslint-disable-line react/prefer-sta
   render() {
     return (
       <div className={styles.mainDash}>
-         <Grid className={styles.bsGrid} fluid={true}>
-   <Row className="show-grid">
-      <Col md={6} mdPush={6}> <ChartContainer url={['http://localhost:8000/d3/location-category-sales','http://localhost:8000/d3/weekly-sales']}/> </Col>
-      {/*<Col md={6} mdPull={6}> <ChartContainer url={'http://localhost:8000/d3/weekly-sales'} data={this.props.apidata2 }/> </Col> */}
-    </Row>
-
-    </Grid>
+        <MainDashContainer url={['http://localhost:8000/d3/location-category-sales',
+                              'http://localhost:8000/d3/weekly-sales'
+                              ]} />
       </div>
     );
   }
 }
-const selectData1 = () => (state) => state.chartContainer;
-const selectData2 = () => (state) => state.chartContainer;
+const selectData1 = () => (state) => state.MainDashContainer;
+const selectData2 = () => (state) => state.MainDashContainer;
 
 const mapStateToProps = createStructuredSelector({
   apidata1: selectData1(),
