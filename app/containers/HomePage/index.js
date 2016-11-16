@@ -20,7 +20,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
     return (
    	 
       <h1 className={styles.homepageMessage}>
-        <FormattedMessage {...messages.header} />
+        Welcome to FELFEL Analytics
       </h1>
 
     );

@@ -8,8 +8,12 @@
   display: block;
 }
 
-.navbar{
+.nav{
 	font-family: 'Novecento Wide';
 	font-size: 14px;
 	letter-spacing: 2px;
+}
+
+.navBar{
+
 }

@@ -18,47 +18,79 @@ import {Link} from 'react-router';
 import {LinkContainer} from 'react-router-bootstrap';
 
 export default class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
-
   static propTypes = {
-    children: React.PropTypes.node,
-  };
+    children: React.PropTypes.node, 
+    };
 
   render() {
-    const logoSrc = require('../../images/felfel_typeface.png')
-    return (
-      <div className={styles.container}>
-      <Navbar>
-    <Navbar.Header >
-      <Navbar.Brand>
-        <Link to='/'> <img src={logoSrc} width={65} />  </Link>
-      </Navbar.Brand>
-    </Navbar.Header>
-    <Nav className={styles.navbar} pullRight>
-      <LinkContainer to='maindash'>
-      <NavItem eventKey={1} >MainDash</NavItem>
-        </LinkContainer>
-        <NavDropdown eventKey={3} title="Operations" id="basic-nav-dropdown">
-        <LinkContainer to='/'>
-        <MenuItem eventKey={3.1}>Home</MenuItem>
-        </LinkContainer>
-        <MenuItem eventKey={3.2}>FELFEL Chart 1</MenuItem>
-        <MenuItem eventKey={3.3}>FELFEL Chart 2</MenuItem>
-        <MenuItem divider />
-        <MenuItem eventKey={3.3}>Separated Chart 1</MenuItem>
-      </NavDropdown>
-      <NavDropdown eventKey={3} title="Corporate" id="basic-nav-dropdown">
-        <LinkContainer to='/'>
-        <MenuItem eventKey={3.1}>Home</MenuItem>
-        </LinkContainer>
-        <MenuItem eventKey={3.2}>FELFEL Chart 1</MenuItem>
-        <MenuItem eventKey={3.3}>FELFEL Chart 2</MenuItem>
-        <MenuItem divider />
-        <MenuItem eventKey={3.3}>Separated Chart 1</MenuItem>
-      </NavDropdown>
-    </Nav>
-  </Navbar>
+    const logoSrc = require('../../images/felfel_typeface.png');
 
-        {React.Children.toArray(this.props.children)}
+    return (
+        <div className={styles.container}   >
+            <Navbar className={styles.navBar} fluid >
+                <Navbar.Header >
+                    <Navbar.Brand pullRight>
+                        <Link to='/'> <img src={logoSrc} width={65} />  </Link>
+                    </Navbar.Brand>
+                </Navbar.Header>
+
+                <Nav className={styles.nav} pullRight>
+                    <LinkContainer to='maindash'>
+                        <NavItem eventKey={1}> MainDash </NavItem>
+                    </LinkContainer>
+                    
+                    {/* Operations drop down menu */}
+                    <NavDropdown eventKey={3} title="Operations" id="basic-nav-dropdown">
+                        <LinkContainer to='/'>
+                            <MenuItem eventKey={3.1}> Dashboard </MenuItem>
+                        </LinkContainer>
+                            <MenuItem eventKey={3.2}> FELFEL Chart 1 </MenuItem>
+                            <MenuItem eventKey={3.3}> FELFEL Chart 2 </MenuItem>
+                            <MenuItem divider />
+                            <MenuItem eventKey={3.3}>Separated Chart 1</MenuItem>
+                    </NavDropdown>
+
+                {/* Coorporate Partnerships drop down menu */}
+                    <NavDropdown eventKey={3} title="Corporate Partnerships" id="basic-nav-dropdown">
+                        <LinkContainer to={'/corporate'}>
+                            <MenuItem eventKey={3.1}> Dashboard </MenuItem>
+                        </LinkContainer>
+                        <LinkContainer to={'/corporate/sites'}>
+                            <MenuItem eventKey={3.2}> Sites </MenuItem>
+                        </LinkContainer>
+                        <LinkContainer to={'/corporate/siteprofit'}>
+                            <MenuItem eventKey={3.3}> Site Profitability </MenuItem>
+                        </LinkContainer>
+                            <MenuItem divider />
+                            <MenuItem eventKey={3.3}> Separated Chart 1 </MenuItem>
+                    </NavDropdown>
+
+                {/* Customer Excellence drop down menu */}
+                    <NavDropdown eventKey={3} title="Customer Excellence" id="basic-nav-dropdown">
+                        <LinkContainer to='/'>
+                            <MenuItem eventKey={3.1}> Dashboard </MenuItem>
+                        </LinkContainer>
+                            <MenuItem eventKey={3.2}> FELFEL Chart 1 </MenuItem>
+                            <MenuItem eventKey={3.3}> FELFEL Chart 2 </MenuItem>
+                            <MenuItem divider />
+                            <MenuItem eventKey={3.3}> Separated Chart 1 </MenuItem>
+                    </NavDropdown>
+
+                {/* Product Excellence drop down menu */}
+                    <NavDropdown eventKey={3} title="Product Excellence" id="basic-nav-dropdown">
+                        <LinkContainer to='/'>
+                            <MenuItem eventKey={3.1}> Dashboard </MenuItem>
+                        </LinkContainer>
+                            <MenuItem eventKey={3.2}> FELFEL Chart 1 </MenuItem>
+                            <MenuItem eventKey={3.3}> FELFEL Chart 2 </MenuItem>
+                            <MenuItem divider />
+                            <MenuItem eventKey={3.3}> Separated Chart 1 </MenuItem>
+                    </NavDropdown>
+                
+
+                </Nav>
+            </Navbar>
+            {React.Children.toArray(this.props.children)}
       </div>
     );
   }

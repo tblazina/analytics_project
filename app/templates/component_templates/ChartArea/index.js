@@ -5,7 +5,6 @@
 */
 
 import React from 'react';
-
 import styles from './styles.css';
 
 class ChartArea extends React.Component { // eslint-disable-line react/prefer-stateless-function

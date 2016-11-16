@@ -35,20 +35,83 @@ export default function createRoutes(store) {
 
         importModules.catch(errorLoading);
       },
-    }, {
+    },
+     {
       path: 'maindash',
       name: 'maindash',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           System.import('containers/MainDashContainer/reducer'),
           System.import('containers/MainDashContainer/sagas'),
-          System.import('components/MainDash'),
+          System.import('containers/MainDashContainer'),
         ]);
 
         const renderRoute = loadModule(cb);
 
         importModules.then(([reducer, sagas, component]) => {
           injectReducer('mainDashContainer', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
+      path: '/corporate/sites',
+      name: 'sites',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/CorporatePartnershipsSitesContainer/reducer'),
+          System.import('containers/CorporatePartnershipsSitesContainer/sagas'),
+          System.import('containers/CorporatePartnershipsSitesContainer'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+
+          injectReducer('corporatePartnershipsSitesContainer', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+      }
+      , {
+      path: '/corporate',
+      name: 'corporatePartnershipsMainDashContainer',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/CorporatePartnershipsMainDashContainer/reducer'),
+          System.import('containers/CorporatePartnershipsMainDashContainer/sagas'),
+          System.import('containers/CorporatePartnershipsMainDashContainer'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('corporatePartnershipsMainDashContainer', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
+      path: '/corporate/siteprofit',
+      name: 'siteProfitabilityContainer',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/SiteProfitabilityContainer/reducer'),
+          System.import('containers/SiteProfitabilityContainer/sagas'),
+          System.import('containers/SiteProfitabilityContainer'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('siteProfitabilityContainer', reducer.default);
           injectSagas(sagas.default);
           renderRoute(component);
         });
@@ -66,3 +129,48 @@ export default function createRoutes(store) {
     },
   ];
 }
+
+
+
+
+
+
+
+
+
+// {
+//   path: '/about',
+//   name: 'about',
+//   getComponent(nextState, cb) {
+//     const importModules = Promise.all([
+//       System.import('containers/AboutPage'),
+//     ]);
+
+//     const renderRoute = loadModule(cb);
+
+//     importModules.then(([component]) => {
+//       renderRoute(component);
+//     });
+
+//     importModules.catch(errorLoading);
+//   },
+//   childRoutes: [
+//     {
+//       path: '/about/our-team',
+//       name: 'team',
+//       getComponent(nextState, cb) {
+//         const importModules = Promise.all([
+//           System.import('containers/TeamPage'),
+//         ]);
+
+//         const renderRoute = loadModule(cb);
+
+//         importModules.then(([component]) => {
+//           renderRoute(component);
+//         });
+
+//         importModules.catch(errorLoading);
+//       },
+//     },
+//   ]
+// }

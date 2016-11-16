@@ -1,0 +1,32 @@
+.corporatePartnershipsSitesContainer { /* stylelint-disable */
+    font-family: 'Novecento Wide';
+}
+
+.grid{
+	margin-top: 30px;
+}
+
+.row1{
+	margin-bottom: 50px;
+}
+
+.row2{
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.row3{
+	text-align: center;
+
+}
+
+.col2{
+	font-size: 20px;
+
+}
+
+.thead{
+	text-align: center;
+}
+
+

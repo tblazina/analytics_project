@@ -1,0 +1,15 @@
+.xAxis { /* stylelint-disable */
+		font-family: 'Novecento Wide';
+		font-size: 9px;
+		-webkit-font-smoothing: antialiased;
+}
+
+.Axes{
+	-webkit-font-smoothing: antialiased;
+}
+
+.rects{
+	stroke: black;
+	stroke-opacity: 0.75;
+}
+

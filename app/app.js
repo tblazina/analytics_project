@@ -13,6 +13,7 @@ import 'file?name=[name].[ext]!./.htaccess';
 /* eslint-enable import/no-unresolved */
 
 // Import all the third party stuff
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -21,6 +22,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { useScroll } from 'react-router-scroll';
 import LanguageProvider from 'containers/LanguageProvider';
 import configureStore from './store';
+
 
 // Import i18n messages
 import { translationMessages } from './i18n';
@@ -96,5 +98,5 @@ if (!window.Intl) {
 // it's not most important operation and if main code fails,
 // we do not want it installed
 if (process.env.NODE_ENV === 'production') {
-  require('offline-plugin/runtime').install(); // eslint-disable-line global-require
+      require('offline-plugin/runtime').install(); // eslint-disable-line global-require
  }
